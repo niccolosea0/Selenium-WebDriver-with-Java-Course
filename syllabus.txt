@@ -1,0 +1,65 @@
+Selenium syllabus & How to reach Trainer for Queries?
+
+"Below are the topics list which you are going to learn from scratch in this Tutorial."
+
+    Complete Core java
+
+    Selenium Webdriver- Major focus (20 hours+ content explaining all concepts)
+
+    Selenium 4.0 CDP Protocol Topics
+
+    Selenium Grid
+
+    Live projects on Selenium 
+
+    Selenium Devops Infrastructure setup ( Newly added)
+
+    Interview questions discussion with solutions
+
+    TestNG
+
+    Maven
+
+    ANT
+
+    Jenkins
+
+    Log4j
+
+    Real time challenges in developing framework and how to address them
+
+    Extent Test Execution reports
+
+    Parallel Test Execution
+
+    Cucumber
+
+    Data driven framework
+
+    Hybrid Framework
+
+    Page object Model Framework
+
+    DataBase testing with Selenium
+
+    Performance testing with Selenium
+
+    Mobile Automation basics only!
+
+    CLoud Automation with Sauce labs
+
+    AutoIT- Desktop Automation integration with Selenium
+
+    Bonus lecture- Bugzilla defect tool management.
+
+If you feel something is missing in our content. Please drop me a message so that I will work on it and update .
+
+******* How to reach Trainer for Queries ****************
+
+If you run into any issues, You can ask me a question from course dashboard itself. Just Select Q&A Tab and click "Ask a new Question" to post.. one of our team member will assist you in less than 24 hours
+
+Before posting the question, I request you to search  queries from existing questions. I am sure 90% of the students queries may already be answered in past. So it can save your time if you have already found your query with the solution.
+
+Welcome onboard !!  Thanks for choosing our course!
+
+We wish you all the Best !!
