@@ -1,0 +1,22 @@
+Question 1: Select the right way of creating a WebDriver object?
+    WebDriver driver = new ChromeDriver();
+    WebDriver driver = new FirefoxDriver();
+
+Question 2: In ‘public static void main (String args[]) - what is the significance of main method?
+    The control and begining of execution of a program starts from the main method
+
+Question 3: What is the difference between quit () and close () method?
+    quit shall quit all the windows related to browser, close shall quit only specific windows
+
+Question 4: Identify the WebDriver method to load a new webpage.
+    get()
+
+Question 5: Identify the WebDriver method to fetch the current URL represented in form a string
+    getCurrentUrl()
+       
+Question 6: By which method we can get title of the current page?
+    getTitle()
+       
+Question 7: Identify the method that gives the source of the last page loaded.
+    getPageSource()
+
