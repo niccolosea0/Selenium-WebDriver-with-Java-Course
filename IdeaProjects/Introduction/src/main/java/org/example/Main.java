@@ -2,8 +2,6 @@ package org.example;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chromium.ChromiumDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,8 +17,8 @@ public class Main {
 
         System.out.println("Title: " + title);
         System.out.println("Current URL: " + currentUrl);
+        System.out.println("Source: " + driver.getPageSource());
 
         driver.close();
-
     }
 }
