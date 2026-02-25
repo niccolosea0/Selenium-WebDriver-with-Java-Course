@@ -13,11 +13,14 @@ public class Main {
         // Declaring WebDriver type to have access only to WebdRiver methods, not specific ones for browsers
         WebDriver driver = new ChromeDriver();
         driver.get("https://stackoverflow.com/questions");
+
         String title = driver.getTitle();
         String currentUrl = driver.getCurrentUrl();
 
         System.out.println("Title: " + title);
         System.out.println("Current URL: " + currentUrl);
+
+        driver.close();
 
     }
 }
