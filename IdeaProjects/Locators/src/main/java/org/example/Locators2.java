@@ -19,6 +19,7 @@ public class Locators2 {
         // Login name
         String name = "John";
         String password = getPassword(driver);
+        Assert.assertEquals(password, "rahulshettyacademy");
 
         driver.get("https://rahulshettyacademy.com/locatorspractice/");
         driver.findElement(By.cssSelector("#inputUsername")).sendKeys(name);
