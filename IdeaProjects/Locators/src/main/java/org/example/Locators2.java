@@ -18,10 +18,11 @@ public class Locators2 {
 
         // Login name
         String name = "John";
+        String password = getPassword(driver);
 
         driver.get("https://rahulshettyacademy.com/locatorspractice/");
         driver.findElement(By.cssSelector("#inputUsername")).sendKeys(name);
-        driver.findElement(By.cssSelector("input[type*='pass'")).sendKeys("rahulshettyacademy");
+        driver.findElement(By.cssSelector("input[type*='pass'")).sendKeys(password);
         driver.findElement(By.id("chkboxOne")).click();
         driver.findElement(By.cssSelector("input[name='chkboxTwo']")).click();
         driver.findElement(By.xpath("//button[contains(@class, 'submit')]")).click();
@@ -38,5 +39,19 @@ public class Locators2 {
 
         driver.findElement(By.xpath("//button[text()='Log Out']")).click();
         driver.close();
+    }
+
+    private static String getPassword(WebDriver driver) throws InterruptedException {
+
+
+        driver.get("https://rahulshettyacademy.com/locatorspractice/");
+        driver.findElement(By.linkText("Forgot your password?")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.cssSelector(".reset-pwd-btn")).click();
+        String passwordText = driver.findElement(By.cssSelector("form p")).getText();
+        String[] passwordTextArr = passwordText.split("'");
+        String password = passwordTextArr[1].split("'")[0];
+
+        return password;
     }
 }
