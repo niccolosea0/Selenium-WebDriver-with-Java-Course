@@ -22,6 +22,9 @@ public class Main {
         WebElement errorMessage = driver.findElement(By.cssSelector("p.error"));
         System.out.println(errorMessage.getText());
 
+        driver.findElement(By.linkText("Forgot your password?")).click();
+        driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("John");
+
 
         // driver.close();
 
