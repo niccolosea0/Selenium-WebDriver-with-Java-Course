@@ -24,6 +24,9 @@ public class Main {
 
         driver.findElement(By.linkText("Forgot your password?")).click();
         driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("John");
+        driver.findElement(By.xpath("//input[@type='text'][2]")).sendKeys("John@random.com");
+        driver.findElement(By.cssSelector("input[type='text']:nth-child(3)")).clear();
+        driver.findElement(By.xpath("//input[@type='text'][2]")).sendKeys("matteroftime@fly.com");
 
 
         // driver.close();
