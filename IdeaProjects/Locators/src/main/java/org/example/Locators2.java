@@ -12,10 +12,15 @@ import java.time.Duration;
 public class Locators2 {
     public static void main(String[] args) throws InterruptedException {
 
+
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+        // Login name
+        String name = "John";
+
         driver.get("https://rahulshettyacademy.com/locatorspractice/");
-        driver.findElement(By.cssSelector("#inputUsername")).sendKeys("John");
+        driver.findElement(By.cssSelector("#inputUsername")).sendKeys(name);
         driver.findElement(By.cssSelector("input[type*='pass'")).sendKeys("rahulshettyacademy");
         driver.findElement(By.id("chkboxOne")).click();
         driver.findElement(By.cssSelector("input[name='chkboxTwo']")).click();
@@ -27,5 +32,11 @@ public class Locators2 {
         System.out.println("Successfully logged in text: " + successText);
 
         Assert.assertEquals(successText, "You are successfully logged in.");
+        String greetingMessage = driver.findElement(By.cssSelector("div[class='login-container'] h2")).getText();
+        System.out.println("greeting message: " + greetingMessage);
+        Assert.assertEquals(greetingMessage, "Hello " + name + ",");
+
+        driver.findElement(By.xpath("//button[text()='Log Out']")).click();
+        driver.close();
     }
 }
