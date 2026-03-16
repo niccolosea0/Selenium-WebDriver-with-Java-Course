@@ -15,10 +15,10 @@ public class UpdatedDropdown {
 
         WebElement srCitizenChecBox = driver.findElement(By.cssSelector("input[id*='SeniorCitizenDiscount']"));
         srCitizenChecBox.click();
-        System.out.println(srCitizenChecBox.isSelected());
+        Assert.assertTrue(srCitizenChecBox.isSelected());
 
         List<WebElement> checkBoxes = driver.findElements(By.cssSelector("div[id='discount-checkbox'] input[type='checkbox']"));
-        System.out.println("Number of checkboxes: " + checkBoxes.size());
+        Assert.assertEquals(5, checkBoxes.size());
 
 
         driver.findElement(By.id("divpaxinfo")).click();
