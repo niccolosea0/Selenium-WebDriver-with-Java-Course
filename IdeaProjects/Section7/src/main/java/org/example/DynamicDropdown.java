@@ -2,7 +2,6 @@ package org.example;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DynamicDropdown {
@@ -11,10 +10,11 @@ public class DynamicDropdown {
         WebDriver driver = new FirefoxDriver();
         driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
 
-        driver.findElement(By.id("ctl00_mainContent_ddl_originStation1")).click();
-        driver.findElement(By.xpath("//option[@value='BLR']")).click();
+        driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT")).click();
+        driver.findElement(By.xpath("//a[@value='BLR']")).click();
 
-        driver.findElement(By.xpath("//select[@id='ctl00_mainContent_ddl_destinationStation1'] //option[@value='MAA'] ")).click();
+        driver.findElement(By.xpath("//a[@value='MAA'] ")).click();
 
+        driver.findElement(By.cssSelector("div[class*='group-first'] a[class*='ui-state-active']")).click();
     }
 }
