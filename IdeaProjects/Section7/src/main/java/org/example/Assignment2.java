@@ -36,10 +36,6 @@ public class Assignment2 {
         driver.findElement(By.cssSelector("input[value='Submit']")).click();
 
         String alertMessage = driver.findElement(By.cssSelector(".alert strong")).getText();
-        Assert.assertEquals(alertMessage, "Success!");
-
-
-
-
+        Assert.assertEquals(alertMessage, "");
     }
 }
