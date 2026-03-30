@@ -29,7 +29,8 @@ public class Main {
 
             if (itemsNeededList.contains(productName)) {
                 System.out.println(productName);
-                driver.findElements(By.xpath("//button[text()='ADD TO CART']")).get(i).click();
+                driver.findElements(By.xpath("//div[@class='product-action']/button")).get(i).click();
+
 
                 itemsFound++;
 
