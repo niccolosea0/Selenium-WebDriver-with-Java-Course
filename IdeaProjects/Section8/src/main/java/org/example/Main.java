@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -15,14 +16,26 @@ public class Main {
 
         List<WebElement> products =  driver.findElements(By.cssSelector("h4.product-name"));
 
-        String[] names = {"Cucumber", "Broccoli"};
+        String[] itemsNeeded = {"Cucumber", "Brocolli", "Beans"};
 
+        List<String> itemsNeededList = Arrays.asList(itemsNeeded);
         for (int i = 0; i < products.size(); i++) {
-            String productName = products.get(i).getText();
-            if (productName.contains(names[0])) {
+
+            String[] splitedName = products.get(i).getText().split("-");
+            String productName = splitedName[0].trim();
+
+
+            int itemsFound = 0;
+
+            if (itemsNeededList.contains(productName)) {
                 System.out.println(productName);
                 driver.findElements(By.xpath("//button[text()='ADD TO CART']")).get(i).click();
-                break;
+
+                itemsFound++;
+
+                if (itemsFound == itemsNeededList.size()) {
+                    break;
+                }
             }
         }
     }
