@@ -35,13 +35,16 @@ public class WindowHandles {
         String parentId = it.next();
         String childId = it.next();
 
-        String redText =  driver.switchTo().window(childId).findElement(By.cssSelector(".im-para.red")).getText();
-        System.out.println(redText);
+        String email = driver.switchTo().window(childId).findElement(By.cssSelector(".im-para.red")).getText().split("at")[1].trim().split("with")[0];
+
+        System.out.println(email);
+        driver.switchTo().window(parentId);
+        driver.findElement(By.id("username")).sendKeys(email);
 
     }
 
     @AfterMethod
     public void teardown() {
-        driver.quit();
+        //driver.quit();
     }
 }
