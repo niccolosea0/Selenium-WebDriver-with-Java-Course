@@ -45,6 +45,6 @@ public class WindowHandles {
 
     @AfterMethod
     public void teardown() {
-        //driver.quit();
+        driver.quit();
     }
 }
