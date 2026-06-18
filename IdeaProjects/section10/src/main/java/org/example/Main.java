@@ -1,17 +1,47 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+import java.time.Duration;
+
+public class Main {
+        WebDriver driver;
+
+        @BeforeMethod
+        public void setup() {
+            driver = new ChromeDriver();
+            driver.get("https://www.amazon.com/");
         }
-    }
+
+        @Test
+        public void testMouseHover() {
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+            Actions a = new Actions(driver);
+
+            WebElement searchInput = driver.findElement(By.id("twotabsearchtextbox"));
+            WebElement accountLists = driver.findElement(By.cssSelector("span[id='nav-link-accountList-nav-line-1']"));
+
+            a.moveToElement(searchInput).click().keyDown(Keys.SHIFT).sendKeys("hello").doubleClick().build().perform();
+            Assert.assertEquals("HELLO", searchInput.getAttribute("value"));
+
+            a.moveToElement(accountLists).contextClick().build().perform();
+
+        }
+
+        @AfterMethod
+        public void tearDown() {
+            if (driver != null) {
+                driver.quit();
+            }
+        }
 }
