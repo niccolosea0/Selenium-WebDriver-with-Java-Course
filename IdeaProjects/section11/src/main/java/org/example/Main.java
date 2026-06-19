@@ -27,7 +27,15 @@ public class Main {
             System.out.println("Number of links: " + linksList.size());
         }
 
+        @Test(priority = 2)
+        public void getFooterLinksCount() {
+            WebElement footerWebElement = driver.findElement(By.cssSelector("div[class*='footer']"));
 
+            List<WebElement> footerLinksList = footerWebElement.findElements(By.tagName("a"));
+
+            System.out.println("Footer links count: " + footerLinksList.size());
+
+        }
 
         @AfterMethod
         public void tearNika() {
