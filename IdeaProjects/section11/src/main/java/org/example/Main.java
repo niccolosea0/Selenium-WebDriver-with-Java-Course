@@ -37,6 +37,17 @@ public class Main {
 
         }
 
+        @Test(priority = 3)
+        public void getFooterFirstColumnLinksCount() {
+            WebElement footerWebElement = driver.findElement(By.cssSelector("div[class*='footer']"));
+
+            WebElement firstColumn = footerWebElement.findElement(By.cssSelector("tr td:nth-child(1)"));
+
+            List<WebElement> firstColumnLinks = firstColumn.findElements(By.tagName("a"));
+
+            System.out.println("First column links count: " + firstColumnLinks.size());
+        }
+
         @AfterMethod
         public void tearNika() {
             driver.quit();
