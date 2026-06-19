@@ -49,7 +49,7 @@ public class Main {
         }
 
         @AfterMethod
-        public void tearNika() {
+        public void tearDown() {
             driver.quit();
         }
 }
