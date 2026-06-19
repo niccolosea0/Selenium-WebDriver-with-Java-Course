@@ -22,12 +22,13 @@ public class FrameAssignment {
     }
 
     @Test
-    public void handleFrames() {
-        WebElement frameLink = driver.findElement(By.cssSelector("a[href='/frames']"));
-        frameLink.click();
+    public void testNestedFrames() {
 
-        WebElement nestedFrames = driver.findElement(By.cssSelector("a[href='/nested_frames']"));
-        nestedFrames.click();
+        navigateToNestedFrames();
+        handleFrames();
+    }
+
+    public void handleFrames() {
 
         // Get frames list
         List<WebElement> framesList = getFrameList("Parent frame");
@@ -46,7 +47,6 @@ public class FrameAssignment {
         // Get text from middle frame
         String middleFrameText = driver.findElement(By.id("content")).getText();
         System.out.println("Text: " + middleFrameText);
-
     }
 
     public List<WebElement> getFrameList(String frameName) {
@@ -55,8 +55,16 @@ public class FrameAssignment {
         return framesList;
     }
 
+    public void navigateToNestedFrames() {
+        WebElement frameLink = driver.findElement(By.cssSelector("a[href='/frames']"));
+        frameLink.click();
+
+        WebElement nestedFrames = driver.findElement(By.cssSelector("a[href='/nested_frames']"));
+        nestedFrames.click();
+    }
+
     @AfterMethod
     public void tearDown() {
-        // driver.quit();
+        driver.quit();
     }
 }
