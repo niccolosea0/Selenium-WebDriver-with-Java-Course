@@ -1,6 +1,7 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -8,7 +9,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import javax.swing.text.html.HTMLDocument;
+import java.time.Duration;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class Main {
 
@@ -39,17 +44,42 @@ public class Main {
 
         @Test(priority = 3)
         public void getFooterFirstColumnLinksCount() {
-            WebElement footerWebElement = driver.findElement(By.cssSelector("div[class*='footer']"));
+            WebElement footerDriver = driver.findElement(By.cssSelector("div[class*='footer']"));
 
-            WebElement firstColumn = footerWebElement.findElement(By.cssSelector("tr td:nth-child(1)"));
+            WebElement columnDriver = footerDriver.findElement(By.cssSelector("tr td:nth-child(1)"));
 
-            List<WebElement> firstColumnLinks = firstColumn.findElements(By.tagName("a"));
+            List<WebElement> firstColumnLinks = columnDriver.findElements(By.tagName("a"));
 
-            System.out.println("First column links count: " + firstColumnLinks.size());
+            for (int i = 0; i < firstColumnLinks.size(); i++) {
+
+                String clickLink = Keys.chord(Keys.CONTROL, Keys.ENTER);
+
+                firstColumnLinks.get(i).sendKeys(clickLink);
+
+            }
+
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+            // Get window handles
+            Set<String> windowHandles = driver.getWindowHandles();
+
+            // Iterator on the window handles
+            Iterator<String> it = windowHandles.iterator();
+
+            // Move to first window
+            it.next();
+
+            int count = 0;
+
+            while (it.hasNext()) {
+                driver.switchTo().window(it.next());
+                System.out.println("Window N" + (++count) + " Title: " + driver.getTitle());
+            }
+
         }
 
         @AfterMethod
         public void tearDown() {
-            driver.quit();
+            //driver.quit();
         }
 }
