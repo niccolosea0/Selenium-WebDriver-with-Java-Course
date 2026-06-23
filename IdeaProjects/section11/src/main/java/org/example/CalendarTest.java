@@ -26,7 +26,6 @@ public class CalendarTest {
         String monthNumber = "6";
         String date = "15";
         String year = "2027";
-Add
         openYearSelection();
         selectDeliveryDate(year, monthNumber, date);
     }
