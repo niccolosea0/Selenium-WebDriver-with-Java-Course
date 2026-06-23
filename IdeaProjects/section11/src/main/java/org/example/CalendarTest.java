@@ -26,33 +26,31 @@ public class CalendarTest {
         String monthNumber = "6";
         String date = "15";
         String year = "2027";
-
-        // Call method to go to year selection
+Add
         openYearSelection();
-
-
-        // Select year
-        selectYear();
-        selectMonth();
+        selectDeliveryDate(year, monthNumber, date);
     }
 
-    private void selectMonth() {
-
-        WebElement monthSection = driver.findElement(By.cssSelector(".react-calendar__year-view__months"));
-        driver.findElement(By.cssSelector("button:nth-child(6)")).click();
-
+    private void selectDeliveryDate(String year, String monthNumber, String date) {
+        selectYear(year);
+        selectMonth(monthNumber);
+        selectDate(date);
     }
 
-    private void selectYear() {
+    private void selectDate(String date) {
 
-        List<WebElement> yearElements = driver.findElements(By.cssSelector(".react-calendar__tile.react-calendar__decade-view__years__year"));
+        driver.findElement(By.xpath("//abbr[text()='" + date + "']")).click();
+    }
 
-        for (WebElement element : yearElements) {
-            if (element.getText().equals("2027")) {
-                element.click();
-                System.out.println("Done");
-            }
-        }
+    private void selectMonth(String monthNumber) {
+
+        List<WebElement> months = driver.findElements(By.cssSelector(".react-calendar__tile.react-calendar__year-view__months__month"));
+        months.get(Integer.parseInt(monthNumber) - 1).click();
+    }
+
+    private void selectYear(String year) {
+
+        driver.findElement(By.xpath("//button[text()='" + year + "']")).click();
     }
 
     private void openYearSelection() {
