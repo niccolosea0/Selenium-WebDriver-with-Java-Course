@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -23,11 +24,28 @@ public class CalendarTest {
     @Test
     public void selectDate() {
 
-        String monthNumber = "6";
+        String month = "6";
         String date = "15";
         String year = "2027";
         openYearSelection();
-        selectDeliveryDate(year, monthNumber, date);
+        selectDeliveryDate(year, month, date);
+        verifyCalendarDate(month, date, year);
+    }
+
+
+    private void verifyCalendarDate(String month, String date, String year) {
+
+        List<WebElement> calendarDate = driver.findElements(By.cssSelector("input[class*='react-date-picker__inputGroup__input react-date-picker__inputGroup']"));
+
+        String[] calendarArray = new String[] {month, date, year};
+
+        for (int i = 0; i < calendarDate.size(); i++) {
+
+            String value = calendarDate.get(i).getAttribute("value");
+
+            // Compare value from calendar, to our value
+            Assert.assertEquals(value, calendarArray[i]);
+        }
     }
 
     private void selectDeliveryDate(String year, String monthNumber, String date) {
@@ -61,6 +79,6 @@ public class CalendarTest {
 
     @AfterMethod
     public void tearDown() {
-        //driver.quit();
+        driver.quit();
     }
 }
