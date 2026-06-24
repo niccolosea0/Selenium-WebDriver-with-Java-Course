@@ -34,17 +34,25 @@ public class BrokenLinks {
                     continue;
                 }
 
-                // Go to
                 try {
 
+                    // Make HTTP connection with URL
                     HttpURLConnection conn =
                             (HttpURLConnection) new URI(url).toURL().openConnection();
 
+                    // Send Head Request (We do not need whole page, only status code)
                     conn.setRequestMethod("HEAD");
+
+                    // Wait 5 seconds to connect with the server
                     conn.setConnectTimeout(5000);
+
+                    // Wait 5 seconds for server response
                     conn.setReadTimeout(5000);
+
+                    // Open Connection
                     conn.connect();
 
+                    // Get response code
                     int responseCode = conn.getResponseCode();
 
                     if (responseCode >= 400) {
@@ -53,7 +61,9 @@ public class BrokenLinks {
                         System.out.println("Valid link: " + url + " | Status code: " + responseCode);
                     }
 
+                    // Close connection
                     conn.disconnect();
+
                 } catch (IOException | URISyntaxException | IllegalArgumentException e) {
                     System.out.println("Could not verify link: " + url);
                     System.out.println("Reason: " + e.getMessage());
