@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.asserts.SoftAssert;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
@@ -18,6 +20,8 @@ public class BrokenLinks {
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
 
         List<WebElement> anchorLinks =  driver.findElements(By.cssSelector("li[class='gf-li'] a"));
+
+        SoftAssert softAssert = new SoftAssert();
 
         try {
 
@@ -55,20 +59,30 @@ public class BrokenLinks {
                     // Get response code
                     int responseCode = conn.getResponseCode();
 
-                    if (responseCode >= 400) {
-                        System.out.println("Invalid link: " + url + " | Status code: " + responseCode);
-                    } else {
-                        System.out.println("Valid link: " + url + " | Status code: " + responseCode);
-                    }
+
+                    // Using SoftAssert, to not stop execution right away, broken link is found
+                    softAssert.assertTrue(
+                            responseCode < 400,// if it fails
+                            "Broken link found: " + url + " | Status code: " + responseCode // print that message
+                    );
+
+                    // A little bit more complex way
+//                    if (responseCode >= 400) {
+//                        softAssert.fail("Broken link found: " + url + " | Status code: " + responseCode);
+//                    }
+
+                        System.out.println("Checked link: " + url + " | Status code: " + responseCode);
 
                     // Close connection
                     conn.disconnect();
 
                 } catch (IOException | URISyntaxException | IllegalArgumentException e) {
-                    System.out.println("Could not verify link: " + url);
-                    System.out.println("Reason: " + e.getMessage());
+                    softAssert.fail("Could not verify link: " + url + " Reason: " + e.getMessage());
                 }
             }
+
+            softAssert.assertAll();
+
         } finally {
             driver.quit();
         }
