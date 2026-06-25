@@ -1,9 +1,12 @@
 package org.example;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Test1 {
@@ -59,6 +62,22 @@ public class Test1 {
                 .filter(s -> s.endsWith("e"))
                 .map(String::toUpperCase)
                 .forEach(System.out::println);
+
+        List<String> names = Arrays.asList("Jake", "Paul", "Peter", "Joseb", "John", "Adam", "Bob");
+
+        List<String> secondNames = getNamesArrayList();
+
+        System.out.println("\nSorted names: ");
+        names.stream().sorted().map(String::toUpperCase).forEach(System.out::println);
+        Stream<String> concatedStream = Stream.concat(names.stream(), secondNames.stream());
+        System.out.println("\nConcatenated Stream:");
+        //concatedStream.sorted().forEach(System.out::println);
+
+
+        boolean flag = concatedStream.anyMatch(s -> s.equalsIgnoreCase("Paul"));
+        System.out.println(flag);
+        Assert.assertTrue(flag);
+
     }
 
     private List<String> getNamesArrayList() {
@@ -74,9 +93,22 @@ public class Test1 {
         return names;
     }
 
+
+    @Test
+    public void streamCollect() {
+
+        List<String> ls = Stream.of("Paul", "Peter", "Alex", "George", "Luke", "Solomon", "Simon")
+                .collect(Collectors.toUnmodifiableList());
+
+        System.out.println(ls.get(0));
+
+        List<Integer> numbers = Arrays.asList(3, 2, 2, 7, 5, 1, 9, 7);
+
+
+        numbers.stream().distinct().sorted().filter(n -> n == 3).forEach(System.out::println);
+    }
+
     private void printCountResult(int count) {
         System.out.println("Count of names that starts with A: " + count);
     }
-
-
 }
